@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_mgonzalezbeltran_kafka_harness_1705598529753-pr-trigger-input-set
+  identifier: Build_mgonzalezbeltran_kafka_harness_1705598529753prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_mgonzalezbeltran_kafka_harness_1705598529753
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
