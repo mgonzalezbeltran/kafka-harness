@@ -19,14 +19,26 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  identifier: build_go_app
-                  name: Build Go App
+                  identifier: Run
+                  name: Echo Welcome Message
                   spec:
-                    command: |-
-                      echo "Welcome to Harness CI"
-                      go mod init
-                      go build
-                      go test
+                    command: echo "Welcome to Harness CI"
+              - step:
+                  type: RunTests
+                  name: Run Tests with Intelligence
+                  identifier: Run_Tests_with_Intelligence
+                  spec:
+                    language: Java
+                    buildTool: Gradle
+                    args: "--build-cache unitTest -PmaxParallelForks=32 -PignoreFailures=true"
+                    packages: org.apache.kafka,kafka.test,kafka.testkit,kafka.server,kafka.tools,kafka.examples,test.plugins
+                    runOnlySelectedTests: true
+                    preCommand: ls
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "**/*.xml"
           platform:
             arch: Amd64
             os: Linux
