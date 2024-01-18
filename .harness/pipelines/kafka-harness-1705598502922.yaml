@@ -24,6 +24,7 @@ pipeline:
                   spec:
                     command: |-
                       echo "Welcome to Harness CI"
+                      go mod init
                       go build
                       go test
           platform:
